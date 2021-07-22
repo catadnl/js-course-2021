@@ -1,0 +1,39 @@
+{
+	"name": "my-new-app",
+	"version": "1.0.0",
+	"description": "FE project internship 2021",
+	"main": "unused.js",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {
+		"start": "npm-run-all --parallel start:scss start:ts devserver watch:ts",
+		"build": "npm run format && npm run build:scss && npm run build:ts",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"start:scss": "sass -w style.scss dist/style.css",
+		"build:scss": "sass style.scss dist/style.css --style compressed",
+		"devserver": "live-server --watch=\"dist/style.css,dist/index.js\"",
+		"lint:fix": "eslint script.js --fix",
+		"start:ts": "tsc --watch",
+		"build:ts": "tsc -p tsconfig.prod.json && npm run concat-modules && rm -rf dist/js/",
+		"concat-modules": "browserify dist/js/script.js > dist/index.js",
+		"watch:ts": "nodemon --watch dist/js --exec npm run concat-modules"
+	},
+	"author": "Catalin",
+	"license": "ISC",
+	"repository": "",
+	"dependencies": {},
+	"devDependencies": {
+		"browserify": "^17.0.0",
+		"eslint": "^7.31.0",
+		"live-server": "^1.2.1",
+		"nodemon": "^2.0.12",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^2.3.2",
+		"sass": "^1.35.2",
+		"ts-node": "^10.1.0",
+		"typescript": "^4.3.5"
+	}
+}
